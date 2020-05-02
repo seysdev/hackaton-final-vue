@@ -1,49 +1,54 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import store from '@/store';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/landing",
-    name: "Landing",
-    component: () => import("../views/landing/Landing.vue")
+    path: '/landing',
+    name: 'Landing',
+    component: () => import('../views/landing/Landing.vue'),
   },
   {
-    path: "/login",
-    name: "Login",
-    component: () => import("../views/login/Login.vue")
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/auth/Login.vue'),
   },
   {
-    path: "/register",
-    name: "Register",
-    component: () => import("../views/register/Register.vue")
+    path: '/register',
+    name: 'Register',
+    component: () => import('../views/auth/Register.vue'),
   },
   {
-    path: "/",
-    component: () => import("../components/Layout.vue"),
+    path: '/',
+    component: () => import('../components/Layout.vue'),
     children: [
       {
-        path: "/",
-        name: "Init",
-        component: () => import("../views/init/Init.vue")
+        path: '/',
+        name: 'Init',
+        component: () => import('../views/init/Init.vue'),
       },
       {
-        path: "/messages",
-        name: "Messages",
-        component: () => import("../views/messages/Messages.vue")
+        path: '/messages',
+        name: 'Messages',
+        component: () => import('../views/messages/Messages.vue'),
       },
       {
-        path: "/account",
-        name: "Account",
-        component: () => import("../views/account/Account.vue")
-      }
-    ]
-  }
+        path: '/account',
+        name: 'Account',
+        component: () => import('../views/account/Account.vue'),
+      },
+    ],
+    beforeEnter: (to, from, next) => {
+      if (store.state.authStore.isLogin) next();
+      next({ name: 'Login' });
+    },
+  },
 ];
 
 const router = new VueRouter({
-  routes
+  routes,
 });
 
 export default router;

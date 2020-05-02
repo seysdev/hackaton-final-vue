@@ -1,0 +1,15 @@
+{
+  "users": [
+    {
+      "name": "sebastian yabiku",
+      "username": "syabiku",
+      "age": "33",
+      "password": "123456",
+      "phone": "923708059",
+      "place": "lima",
+      "specialization": "lima",
+      "firstTime": true,
+      "id": 1
+    }
+  ]
+}

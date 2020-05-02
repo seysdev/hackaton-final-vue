@@ -1,5 +1,5 @@
 <template>
-  <button @click="onClick" v-bind:class="classValue" class="button">
+  <button @click="onClick" :class="classValue" class="button">
     <slot></slot>
   </button>
 </template>
@@ -9,40 +9,52 @@ export default {
   name: 'Button',
   props: {
     type: String,
+    fullWidth: {
+      type: Boolean,
+    },
   },
   computed: {
     classValue() {
-      return this.type === 'primary' ? 'button-primary' : 'button-ghost';
+      return {
+        'button-primary': this.type === 'primary',
+        'button-secondary': this.type === 'secondary',
+        'button-ghost': this.type === 'ghost',
+        'button-full': this.fullWidth === true,
+      };
     },
   },
   methods: {
     onClick() {
-      console.log('ola!!');
       this.$emit('onclick');
     },
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .button {
   padding: 15px 20px;
   background: grey;
-  color: black;
+  color: #fff;
+  border: 1px solid #fff;
   cursor: pointer;
+  text-align: center;
+  border-radius: 25px;
 
   &-primary {
-    background: red;
-    color: white;
+    background: #5640ff;
   }
 
   &-secondary {
-    background: blue;
+    background: #ff1558;
+  }
+
+  &-full {
+    display: block;
+    width: 100%;
   }
 
   &-ghost {
-    background: white;
-    color: black;
   }
 }
 </style>
