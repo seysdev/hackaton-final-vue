@@ -7,6 +7,7 @@
       :type="type"
       :placeholder="placeholder"
       :required="required"
+      :disabled="disabled"
       class="input"
     />
   </div>
@@ -26,6 +27,7 @@ export default {
     required: {
       type: Boolean,
     },
+    disabled: Boolean,
   },
   data() {
     return {
