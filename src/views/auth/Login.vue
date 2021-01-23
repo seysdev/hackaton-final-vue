@@ -2,7 +2,7 @@
   <div class="view-login">
     <div class="image"></div>
     <div class="form">
-      <h1>LOGIN</h1>
+      <h1>LOGIN modificado</h1>
       <form @submit.prevent="handleSubmit" action="">
         <Input @input="(value) => (username = value)" placeholder="Usuario" label="Usuario" />
         <br />
